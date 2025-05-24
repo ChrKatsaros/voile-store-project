@@ -1,0 +1,1129 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: rgb(250, 250, 250);
+  height: 100%;
+}
+/*--------------------------------------               -------------------------------------------*/
+/* --------------------------------------Navbar Css ---------------------------------------------*/ 
+
+/* ===================================
+   === 1. ΚΥΡΙΟ CONTAINER NAVBAR (Περιλαμβάνει dropdown, logo, και links) ===
+======================================*/
+.navbar {
+  display: flex;
+  flex-direction: column;       /* Κατακόρυφη διάταξη: dropdown πάνω, logo, μετά links */
+  align-items: center;
+  position: sticky;             /* Παραμένει στην κορυφή κατά το scroll */
+  top: 0;
+  background-color: white;
+  z-index: 1000;                
+  padding: 0.4rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+}
+
+/* ===========================
+   === 2. DROPDOWN / HAMBURGER ΜΕΝΟΥ (Αριστερά – ανοίγει σε panel) ==========
+============================== */
+.dropdown-wrapper {
+  position: absolute;           
+  left: 1.5rem;
+  top: 1.5rem;
+}
+
+.hamburger-button {
+  font-size: 1.8rem;            
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(80, 78, 78);
+}
+
+/* === Πάνελ Dropdown (20% πλάτος, όλο το ύψος) === */
+.dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;                /* Πιάνει όλο το ύψος της οθόνης */
+  width: 20vw;                  /* Πιάνει το 20% του πλάτους */
+  background-color: white;
+  border-right: 1px solid #ddd;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  z-index: 1001;
+}
+
+/* === Κουμπί "Χ" για να κλείνει το dropdown (πάνω δεξιά) === */
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+/* === Στυλ συνδέσμων στο dropdown === */
+.dropdown-menu a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  padding: 1.1rem;
+  letter-spacing: 0.1rem;
+}
+
+.dropdown-menu a:hover {
+  color: rgb(163, 163, 163);
+}
+
+/* ==================================
+   === 3. LOGO (Στο κέντρο του navbar) ======
+==================================== */
+.nav-logo {
+  margin: 0.5rem 0;             
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  height: 3.5rem;               
+}
+
+/* ============================
+   === 4. LINKS ΚΑΤΩ ΑΠΟ ΤΟ LOGO =====
+============================= */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 3.6rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 0.4rem;
+}
+
+.nav-links a {
+  color: rgba(40, 40, 40, 0.8);
+  text-decoration: none;
+  position: relative;          /* Απαραίτητο για το ::after underline */
+  padding-bottom: 5px;
+}
+
+/* === Εφέ underline όταν γίνεται hover === */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: black;
+  opacity: 60%;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 80%;                  /* Το underline "ξεδιπλώνεται" στο hover */
+}
+
+/* ------------------------------------
+   === NAVBAR RESPONSIVE RULES  ===
+------------------------------------ */
+
+/* Σε κινητά: Κρύψε τα links*/
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .dropdown-wrapper {
+    display: block;
+  }
+  .dropdown-menu a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  padding: 0.2rem;
+  letter-spacing: 0.1rem;
+  margin-top: 0.9rem;
+}
+
+.dropdown-menu a:hover {
+  color: rgb(163, 163, 163);
+}
+}
+
+/* Σε μεγαλύτερες οθόνες: Δείξε τα links,  */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+  }
+
+ 
+}
+
+
+
+/*-----------------------------------------           ----------------------------------*/
+/*-----------------------------------------Layout Css------------------------------------*/
+.app-wrapper {
+  display: flex;              /* <-- Flex container για ευκολία διάταξης */
+  flex-direction: column;     /* <-- Βάζουμε τα στοιχεία σε κάθετη σειρά (nav, content, footer) */
+  min-height: 100vh;          /* <-- Ύψος του viewport, για να γεμίζει πάντα η οθόνη */
+}
+
+.content {
+  flex: 1;                   /* <-- Αφήνει το περιεχόμενο να πάρει όλο τον διαθέσιμο χώρο */
+  
+}
+
+
+
+/*------------------------------------------         ----------------------------------------*/
+/* -----------------------------------------Main css --------------------------------------*/
+
+
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto; /* Ενα row για καθε template area (ποτε σταθερο υψος στο φοοτερ) */
+  grid-template-areas: 
+    "header1 header2"
+    "header3 header3"
+    "products products";
+  min-height: 100vh;
+  gap: 0;
+  flex: 1; /* σημαντικό για sticky footer */
+}
+
+.headerImg1 {
+  grid-area: header1;
+  width: 100%;
+  height: 100%;
+  max-height: 880px; 
+  object-fit: contain;
+}
+
+.headerImg2 {
+  grid-area: header2;
+  width: 100%;
+  height: 100%;
+  max-height: 880px; 
+  object-fit: contain;
+}
+
+.headerImg3 {
+  grid-area: header3;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 638px; 
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; 
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imageParagraph {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 50px;
+  color: rgb(238, 236, 236); /* λευκό με διαφάνεια */
+  user-select: none;
+  text-align: center;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+  letter-spacing: 1rem;
+}
+
+
+.imageWrapper:hover .imageParagraph {
+  color: #fff; 
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #c4c0b4,
+    0 0 80px #020202;
+}
+
+/*-------------------------------                        -------------------------------------------*/
+/*--------------------------------Header Products Row CSS--------------------------------------------- */
+.headerProductsRow {
+  grid-area: products;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 1.5rem; 
+  margin-bottom: 1.5rem; 
+}
+
+.productBox {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+}
+
+.productBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  background: #e0e0e0;
+  box-shadow: 
+    8px 8px 16px #bebebe, 
+    -8px -8px 16px #ffffff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover effect on image */
+.productBox img:hover {
+  box-shadow: 
+    4px 4px 8px #bebebe, 
+    -4px -4px 8px #ffffff;
+  transform: scale(1.04);
+}
+
+/* Text overlay */
+.productText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.productBox:hover .productText {
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 16px #c4c0b4,
+    0 0 10px #020202;
+}
+
+/* ======= Responsive Adjustments για κινητά & tablets ======= */
+@media (max-width: 768px) {
+
+  
+  .headerImg1,
+  .headerImg2,
+  .headerImg3 {
+    max-height: 480px;
+    height: 480px;
+  }
+
+  .imageParagraph {
+    font-size: 24px;
+    letter-spacing: 0.3rem;
+    top: 40%;
+  }
+
+  .headerProductsRow {
+    gap: 1rem;
+  }
+
+  .productBox {
+    flex: 0 1 calc(50% - 1rem);
+    max-width: 180px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+
+  .productText {
+    font-size: 16px;
+  }
+}
+
+
+
+
+/* ----------------------------------------          --------------------------------------------*/
+/*--------------------------------------- Footer css ------------------------------------------------*/
+
+footer {
+  padding: 1.5rem 1rem;
+  background-color: #b4d4cf;
+  font-family: 'Playfair Display', serif;
+  color: #5f5959;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 0 !important;
+}
+
+.footer-logo img {
+  max-width: 160px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap:wrap;
+  font-size: 11px; 
+  line-height: 1.4;
+  text-align: center;
+  padding-bottom: 1rem;
+  
+  
+  
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 140px;
+}
+
+.footer-left ul,
+.footer-center ul,
+.footer-right ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+.footer-left li,
+.footer-center li,
+.footer-right li {
+  color: #5f5959;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-left li:hover,
+.footer-center li:hover,
+.footer-right li:hover {
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 16px #c4c0b4,
+    0 0 10px #020202;
+  font-weight: 400;
+}
+
+
+.social-icons a {
+  color: rgba(255, 255, 255, 0.7); 
+  font-size: 2.2rem; 
+  margin: 0 0.7rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+  color: rgba(255, 255, 255, 1); 
+  text-shadow:
+    0 0 1px #fff,
+    0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 16px #c4c0b4,
+    0 0 10px #020202;
+  transform: scale(1.35);
+}
+
+/* Default εμφάνιση για μικρές οθόνες */
+.copyright {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* Για μεγάλες οθόνες (768px και πάνω) */
+@media (min-width: 768px) {
+  .copyright-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; 
+    height: 100%;
+  }
+
+  
+}
+
+
+/*------------------------------------             -----------------------------------------*/
+/* ------------------------------------Products Css ------------------------------------------*/
+
+.product-wrapper {
+  padding: 2rem;
+}
+
+/* Τίτλος σελίδας */
+.product-title h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1.75rem;
+  color:  #1b1b1b;
+  text-align: left;
+  opacity: 70%;
+  margin-left: 1.2rem;
+  
+  font-style: italic;
+}
+/*Container για τα προιοντα*/
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 3.5rem;           
+  padding: 0 1rem;       
+  max-width: 1200px;  
+  margin: 0 auto;        
+}
+
+
+/* Κάρτα προϊόντος */
+.product-card {
+  position: relative;
+  width: 200px;
+  background-color: #f5f4f4;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 3px 6px 12px #d1d1d1,
+              -2px -6px 12px #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 310px;
+  margin-bottom: 3rem;
+  height: fit-content;
+  
+
+
+  
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 16px #c4c4c4,
+              -8px -8px 16px #ffffff;
+}
+
+/* Εικόνα + overlay τίτλου */
+.product-image-wrapper {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-image-wrapper img {
+  
+  border-radius: 8px;
+  max-width: 230px;
+  max-height: 230px;
+}
+
+/* Όνομα προϊόντος πάνω στην εικόνα */
+.product-name-overlay {
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.80rem;
+  color: #b4d4cf;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #cccaca,
+    0 0 20px #c4c1c1,
+    0 0 40px #d1d1cf,
+    0 0 80px #858181;
+
+  pointer-events: none;
+  white-space: nowrap;         /* Δεν επιτρέπει αλλαγή γραμμής */
+  overflow: hidden;            /* Κρύβει το επιπλέον κείμενο */
+  text-overflow: ellipsis;     /* Βάζει "..." αν είναι πολύ μεγάλο */
+}
+
+
+
+/* Τιμή προϊόντος */
+.product-price h2 {
+  font-size: 1rem;
+  color: #646262;
+}
+
+/* Neumorphic κουμπί */
+.product-add-to-cart button {
+  padding: 0.6rem 1.4rem;
+  font-size: 0.8rem;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  background: #b4d4cf;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.product-add-to-cart button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 12px rgba(180, 212, 207, 0.6);
+  background: #a1c7c0;
+}
+
+/* ------------------------------ Responsive Διορθώσεις ------------------------------- */
+@media (max-width: 768px) {
+
+  
+  .product-title h1 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-left: 0;  
+    padding: 0.3rem;
+    
+  }
+
+  /*  Κέντρο προϊόντων σε μικρές οθόνες */
+  .products-container {
+    justify-content: center;
+  }
+
+  .product-card {
+    margin: 0 auto 2rem auto; /* Κέντρο και κάθετο περιθώριο */
+    
+  }
+}
+
+
+/*----------------------------------------          ------------------------------------------------*/
+/*--------------------------------------- Story CSS -----------------------------------------------*/
+
+.story-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+    "title title"
+    "text1 image1"
+    "image2 text2"
+    "text3 text3";
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Τίτλος */
+.title {
+  grid-area: title;
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: bold;
+  
+
+ background-image: url('./assets/Marble-Story.webp'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* Κείμενο 1 */
+.text1 {
+  grid-area: text1;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 2rem;
+  line-height: 1.8;
+  height: 60%;
+  opacity: 90%;
+  font-style: italic;
+}
+
+/* Κείμενο 2 */
+.text2 {
+  grid-area: text2;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 2rem;
+  line-height: 1.8;
+  height: 60%;
+  opacity: 90%;
+  font-style: italic;
+}
+
+
+.text3 {
+  grid-area: text3;
+  text-align: center;
+  font-size: 1.2rem;
+  font-style: italic;
+  opacity: 0.75;
+  margin-top: 40px;
+  letter-spacing: 1px;
+}
+
+/* Εικόνα 1 */
+.image1 {
+  grid-area: image1;
+  width: 90%;
+  height: 600px;
+  object-fit: cover;
+ 
+}
+
+/* Εικόνα 2 */
+.image2 {
+  grid-area: image2;
+  width: 90%;
+  height: 580px;
+  object-fit: cover;
+  
+}
+
+
+/*Side Cart Css ----------------------------------------------------------*/
+.products-container{
+  padding: 0;
+}
+.sideCartHeader {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+  border-bottom: 1px solid #ddd;
+  padding-left: 1rem;
+  margin-right: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sideCartContainer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 30%;
+  height: 100vh;
+  background-color: white;
+  overflow-y: auto; /* scrolling */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sideCartTitle {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.cartCloseButton {
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+
+.sideCartProductInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin: 0.2rem;
+  padding: 1rem;
+}
+
+.sideCartProductInfo img {
+  width: 70px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.sideCartProductDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.sideCartProductDetails p {
+  font-weight: bold;
+  margin: 0;
+}
+
+.sideCartProductDetails strong {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #555;
+}
+
+
+.quantity {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity button {
+  padding: 4px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid #fffdfd;
+  border-radius: 4px;
+  background: #b4d4cf;
+  opacity: 50%;
+}
+
+.removeFromCart {
+  background-color: transparent;
+  color: #888; 
+  border: none;
+  font-size: 0.55rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 4px 5px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.removeFromCart:hover {
+  color: #222; 
+  border-bottom: 1px solid #222; 
+}
+
+.removeFromCart:focus {
+  outline: none;
+  color: #000;
+}
+
+
+.quantity span {
+  min-width: 20px;
+  text-align: center;
+}
+
+.sideCartFooter {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.sideCartFooter h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  color: #333;
+  display: flex;
+  align-items: end;
+}
+
+.sideCartFooter h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  color: #ffffff;
+}
+
+.sideCartFooter a {
+  text-decoration: none;
+  color: white;
+  background-color: #000;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 400;
+  transition: background-color 0.2s ease;
+}
+
+.sideCartFooter a:hover {
+  background-color: #444;
+}
+
+
+
+@media (max-width: 768px) {
+  .sideCartContainer {
+    width: 100%;
+  }
+
+  .sideCartProductInfo {
+    flex-wrap: wrap;
+    padding: 0.5rem;
+  }
+
+  .sideCartProductDetails {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .sideCartTitle,
+  .sideCartFooter h2,
+  .sideCartFooter h3 {
+    font-size: 1.2rem;
+  }
+
+  .quantity button {
+    padding: 6px 12px;
+    font-size: 14px;
+    opacity: 1;
+  }
+
+  .sideCartFooter {
+    padding: 0.8rem;
+  }
+
+  .sideCartFooter a {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------------------------------Css For Empty Side Cart  ---------------------------------------*/
+.emptyCartContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  text-decoration: none;
+  color: #020202; 
+}
+
+.emptyCart{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
+}
+
+.startShopping {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 12px;
+  padding: 0.6rem 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.startShopping:hover {
+  background-color: #202020;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ----------------------------------Checkout CSS -----------------------------------------------------*/
+
+.checkout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: start; 
+  
+}
+
+footer{
+  display: none;
+}
+
+.checkout-form-column {
+  padding: 1rem;
+  border-right: 0px solid #ddd;
+}
+
+.checkout-form-column h1 , h3{
+  opacity: 85%;
+}
+
+.checkout-cart-column {
+  padding: 1rem;
+}
+
+.checkout-cart-column h2{
+  opacity: 85%;
+}
+
+.checkout-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.checkoutProductInfo {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+  
+}
+
+.checkoutProductInfo img{
+  height: 180px !important;
+  width: 150px !important;
+  object-fit: contain;
+}
+
+.checkoutCartProductDetails {
+  flex: 1;
+}
+
+.checkoutQuantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.checkoutRemoveFromCart {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+ 
+  border-bottom: 3px solid #ccc;
+}
+
+
+.checkout-summary {
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+.checkoutProductInfo img{
+  height: 250px;
+  width: 250px;
+}
+
+
+.completeCheckoutButton{
+  width: 50%;
+  background-color: #000;
+  padding: 1rem;
+  color: #f8f8f8;
+  letter-spacing: 0.1rem;
+   transition: 0.3s ease;
+}
+
+.completeCheckoutButton:hover{
+  background-color: #1a1818;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .checkout-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  .checkout-form-column,
+  .checkout-cart-column {
+    padding: 0;
+    width: 80%;
+  }
+
+  .checkout-form-column h1,
+  .checkout-form-column h3,
+  .checkout-cart-column h2 {
+    opacity: 85%;
+  }
+
+  .checkout-form input {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .checkoutProductInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .checkoutProductInfo img {
+    height: auto !important;
+    width: 100% !important;
+    max-width: 200px;
+    object-fit: contain;
+  }
+
+  .checkoutQuantity {
+    margin-top: 0.5rem;
+  }
+
+  .completeCheckoutButton {
+    width: 60%;
+  }
+}
