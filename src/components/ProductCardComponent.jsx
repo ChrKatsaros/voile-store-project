@@ -1,7 +1,6 @@
 import React from 'react';
-
+// Όταν πατηθεί το κουμπί, περνάμε στο parent το προϊόν
 function ProductCardComponent(props) {
-  // Όταν πατηθεί το κουμπί, περνάμε στο parent το προϊόν
   function handleClick() {
     props.onAddtoCartClick({
       name: props.name, 
@@ -14,18 +13,14 @@ function ProductCardComponent(props) {
     <div className="product-card">
       <div className="product-image-wrapper">
         <img src={props.image} alt={props.name} />
-
-        <div className="product-name-overlay">
-          <h3>{props.name}</h3>
+        <div className="image-hover-overlay">
+          <button className="hover-add-to-cart" onClick={handleClick}>Add to Cart</button>
         </div>
       </div>
 
-      <div className="product-price">
-        <h2>{props.price} €</h2>
-      </div>
-
-      <div className="product-add-to-cart">
-        <button onClick={handleClick}>Add To Cart</button>
+      <div className="product-info">
+        <h3 className="product-title-text">{props.name}</h3>
+        <p className="product-price-text">{props.price} €</p>
       </div>
     </div>
   );

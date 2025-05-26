@@ -1,13 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// SlideInTitle component
+// SlideInTitle component 
 function SlideInTitle({ children }) {
   return (
     <motion.h1
-      initial={{ x: -100, opacity: 0 }}        // ξεκινάει εκτός οθόνης αριστερά και αόρατο
-      animate={{ x: 0, opacity: 1 }}           // slide in στη θέση του και γίνεται ορατό
-      transition={{ duration: 1.1, ease: "easeOut" }} // ομαλό animation
+      initial={{
+        opacity: 0,
+        y: 40,
+        scale: 0.95,
+        filter: "blur(2px)",
+        letterSpacing: "0.1em"
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        letterSpacing: "0em"
+      }}
+      transition={{
+        duration: 1.1,
+        ease: "easeOut"
+      }}
+      style={{
+        fontWeight: 400,
+        fontFamily: '"Playfair Display", serif', 
+      }}
     >
       {children}
     </motion.h1>

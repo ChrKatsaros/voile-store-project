@@ -1,14 +1,11 @@
-import React from 'react';                      
-import { Link } from 'react-router-dom';        
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-// Το component δέχεται την συνάρτηση onClose ως prop
-function DropdownMenu({ onClose }) {
+// Δέχεται prop `isOpen` για smooth εμφάνιση
+function DropdownMenu({ isOpen, onClose }) {
   return (
-    <div className="dropdown-menu">             {/* Εξωτερικό container του dropdown */}
-      {/* Κουμπί "X" για να κλείνει το dropdown */}
-      <button className="close-button" onClick={onClose}>x</button>
-
-      {/* Links – Όλα κλείνουν το dropdown όταν πατηθούν */}
+    <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
+      <button className="close-button" onClick={onClose}>✕</button>
       <Link to="femme" onClick={onClose}>PERFUMES FOR HER</Link>
       <Link to="homme" onClick={onClose}>PERFUMES FOR HIM</Link>
       <Link to="beaute" onClick={onClose}>BEAUTY ESSENTIALS</Link>
@@ -19,6 +16,5 @@ function DropdownMenu({ onClose }) {
     </div>
   );
 }
-
 
 export default DropdownMenu;

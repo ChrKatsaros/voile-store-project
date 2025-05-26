@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import aromaticCandles from '../data/AromaticCandles';
+import aromaticCandles from '../data/aromaticCandles';
 import ProductCardComponent from './ProductCardComponent';
 import SlideInTitle from './SlideInTitle';
 import { useCart } from '../context/CartContext'; //  Χρήση του context

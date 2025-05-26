@@ -14,6 +14,7 @@ import AromaticCandles from './components/AromaticCandles';
 import Sunscreen from './components/Sunscreen';
 import MenCare from './components/MenCare';
 import ScrollToTop from './components/ScrollToTop';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
@@ -65,6 +66,9 @@ function App() {
 
 
         </Route>
+           {/*  Αυτό είναι για να "πιάσει" ΟΛΕΣ τις άλλες άκυρες διαδρομές */}
+            <Route path="*" element={<ErrorPage />} />
+
       </Routes>
     </>
   );
