@@ -1,11 +1,17 @@
 import React from 'react';
 import NavBar from './Navbar';
 import Footer from './Footer';
-import { Outlet } from 'react-router-dom';
+import { Outlet , useLocation } from 'react-router-dom';
 import SideCart from './SideCart'; 
 
 
-const Layout = () => {
+function Layout(){
+
+const location = useLocation();
+
+// Έλεγχος αν η τρέχουσα διαδρομή είναι το checkout
+  const hideFooter = location.pathname === '/checkout';
+
   return (
     <div className="app-wrapper"> {/* <-- Ο βασικός wrapper που κρατάει όλο το layout */}
       <NavBar />  {/* <-- Πάντα εμφανίζεται πάνω */}
@@ -14,7 +20,7 @@ const Layout = () => {
         <Outlet /> {/* <-- το περιεχόμενο κάθε σελίδας (Main, Femme, Homme...) */}
       </main>
       <SideCart /> {/* <-- Εμφανίζεται παντού μολις πατηθει απο το ναβμπαρ*/}
-      <Footer /> {/* <-- Πάντα κολλημένο κάτω */}
+       {!hideFooter && <Footer />} {/* <-- Πάντα κολλημένο κάτω , δεν εμφανιζεται στο checkout page*/}
     </div>
   );
 };
